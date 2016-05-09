@@ -2,30 +2,59 @@ import java.rmi.*;
 import java.rmi.server.*;
 import java.util.HashMap;
 
+
+class BankClient
+{
+    public int mAccountId;
+    public int mDeposit = 0;
+    public BankClient(int accountId) {
+        mAccountId = accountId;
+    }
+
+    synchronized void deposit(int amount) {
+        mDeposit += amount;
+    }
+
+    synchronized void withdraw(int amount) {
+        mDeposit -= amount;
+    }
+}
+
+Bank : unicastrei, BankInter
+{
+    BankOp getMyAccount(int id);
+
+}
+
 public class BankOp extends UnicastRemoteObject implements BankOpInterface
 {
-    private HashMap<Integer, Integer> bank = new HashMap<Integer, Integer>();
-
+x
     BankOp() throws RemoteException {
         super();
     }
 
-    synchronized public void deposit(int accountId, int amount) throws RemoteException {
-        int currentAmount = this.inquiry(accountId);
-        bank.put(accountId, currentAmount + amount);
+    private BankClient get(int accountId) {
+        if (clients.containsKey(accountId)) {
+            return clients.get(accountId);
+        } else {
+            BankClient b = new BankClient(accountId);
+            clients.put(accountId, b);
+            return b;
+        }
     }
 
-    synchronized public void withdraw(int accountId, int amount) throws RemoteException {
-        int currentAmount = this.inquiry(accountId);
-        bank.put(accountId, currentAmount - amount);
+    public void deposit(int accountId, int amount) throws RemoteException {
+        BankClient b = get(accountId);
+        b.deposit(amount);
+    }
+
+    public void withdraw(int accountId, int amount) throws RemoteException {
+        BankClient b = get(accountId);
+        b.withdraw(amount);
     }
 
     public int inquiry(int accountId) throws RemoteException {
-        if (bank.containsKey(accountId)) {
-            return bank.get(accountId);
-        } else {
-            bank.put(accountId, 0);
-            return 0;
-        }
+        BankClient b = get(accountId);
+        return b.mDeposit;
     }
 }
