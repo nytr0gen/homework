@@ -1,0 +1,29 @@
+.wrap {
+    border-right: 4px solid black;
+    position: relative;
+    width: 600px;
+}
+
+.startRace {
+    margin-left: 560px;
+}
+
+.box {
+    box-sizing: border-box;
+    display: block;
+    width: 40px;
+    height: 40px;
+    padding: 4px;
+    margin-bottom: 6px;
+
+    background: #000;
+    color: #fff;
+    font-weight: 700;
+
+    -webkit-transition: all 20s linear 0s;
+    transition: all 20s linear 0s;
+}
+
+#R { background: #f00; }
+#G { background: #0f0; }
+#B { background: #00f; }
