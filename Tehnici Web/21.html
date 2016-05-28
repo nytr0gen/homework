@@ -1,0 +1,32 @@
+<!--
+1. La hover pe oricare din elementele de tip P care au clasa “wrapper” sa se afiseze intr-un alert numarul de elemente  de tip P care nu au clasa “wrapper”. Alertul se afiseaza la fiecare 5 secunde. Dupa 5 afisari, alertul nu trebuie sa se mai afiseze
+-->
+<p class="wrapper">a</p>
+<p class="wrapper">a</p>
+<p>b</p>
+<p>b</p>
+<p>b</p>
+
+<script>
+var $p = document.getElementsByClassName('wrapper');
+var a = null;
+var b = null;
+for (var i in $p) {
+    $p[i].onmouseover = function(e) {
+        clearInterval(a);
+        clearTimeout(b);
+
+        console.log('start');
+        a = setInterval(function() {
+            console.log(
+                document.getElementsByTagName('p').length - $p.length
+            );
+        }, 2 * 1000);
+
+        b = setTimeout(function() {
+            clearInterval(a);
+            console.log('cleared');
+        }, 10 * 1000);
+    };
+}
+</script>

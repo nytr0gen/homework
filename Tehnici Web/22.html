@@ -1,0 +1,22 @@
+<!--
+2. Sa se genereze prin JavaScript, la incarcarea paginii, 10 patratele (divuri), continand fiecare ca text numarul sau de ordine (deci primul div va contine numarul 1, al doilea numarul 2, etc.). Divurile vor avea dimensiune 20x20px si vor avea un border solid.  Vor fi pozitionate "pe diagonala", astfel incat coltul din dreapta-jos al divului i sa atinga coltul din stanga sus al divului i+1.
+-->
+<div class="wrap">
+</div>
+
+
+<script>
+var $wrap = document.querySelector('.wrap');
+for (var i = 0; i < 10; i++) {
+    var $box = document.createElement('div');
+    $box.textContent = (i + 1);
+    $box.style.width = '20px';
+    $box.style.height = '20px';
+    $box.style.border = '1px solid black';
+    $box.style.marginLeft = (i * 22) + 'px'; // sau asa cu 22px sau boxSizing = 'border-box';
+    $box.style.textAlign = 'center';
+    $box.style.fontWeight = '700';
+
+    $wrap.appendChild($box);
+}
+</script>

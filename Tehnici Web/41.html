@@ -1,0 +1,29 @@
+<!--
+1. Atasati un event listener pentru fiecare LI din UL-ul cu ID-ul "parinte" care executa o functie ce indeplineste urmatoarele:
+la click pe fiecare element li ce are clasa "click" afiseaza  intr-un alert numarul de li-uri din clasa “click”;
+la click pe un element care nu are clasa click afiseaza intr-un alert mesajul “nu”.
+-->
+
+<ul id="parinte">
+    <li class="click">c</li>
+    <li class="click">c</li>
+    <li class="click">c</li>
+    <li>a</li>
+    <li>a</li>
+    <li>a</li>
+</ul>
+
+<script>
+var $li = document.querySelectorAll('ul#parinte > li');
+for (var i in $li) {
+    $li[i].onclick = function(e) {
+        if (this.classList.contains('click')) {
+            console.log(
+                document.querySelectorAll('li.click').length
+            );
+        } else {
+            console.log('nu');
+        }
+    };
+}
+</script>

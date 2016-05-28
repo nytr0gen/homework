@@ -1,0 +1,24 @@
+<!--
+2. La fiecare click al mouse-ului la pozitia acestuia apare un buton care isi afiseaza numarul (al click-ului). Dupa 10 secunde butonul dispare definitiv din document.
+-->
+
+<body>
+<script>
+var clickCount = 0;
+document.body.onclick = function(e) {
+    var x = e.clientX;
+    var y = e.clientY;
+
+    var $btn = document.createElement('button');
+    $btn.style.position = 'absolute';
+    $btn.style.top = y + 'px';
+    $btn.style.left = x + 'px';
+    $btn.textContent = ++clickCount;
+
+    document.body.appendChild($btn);
+    setTimeout(function() {
+        document.body.removeChild($btn);
+    }, 10 * 1000);
+};
+</script>
+</body>

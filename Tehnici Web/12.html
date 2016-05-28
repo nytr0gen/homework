@@ -1,0 +1,40 @@
+<!--
+2. Se considera html-ul:
+<body>
+​<ol id="lista1">
+​​<li>miau</li>
+​​<li>chit</li>
+​​<li>ham</li>
+​</ol>
+​<ol id="lista2">
+​​<li>muu</li>
+​​<li>cip</li>
+​​<li>bzzz</li>
+​​<li>gugu</li>
+​</ol>
+</body>
+
+Adaugati un trigger de eveniment astfel incat la apasarea tastelor numerice (1,…,9), in cazul in care sunt suficiente elemente in ambele liste (nu presupuneti ca au un numar fixat de elemente), sa se interschimbe textul elementelor din lista, de pe pozitia indicata de tasta. In cazul in care cel putin una din liste nu contine suficiente elemente pentru interschimbare, sa se afiseze un alert cu textul: "Nu sunt suficiente elemente in cele doua liste".
+-->
+<ol id="lista1"><li>miau</li><li>chit</li><li>ham</li></ol><ol id="lista2"><li>muu</li><li>cip</li><li>bzzz</li><li>gugu</li></ol>
+<script>
+var $lista1 = document.getElementById('lista1');
+var $lista2 = document.getElementById('lista2');
+window.onkeypress = function(e) {
+    var i = e.which - '1'.charCodeAt(0);
+    if (!(i >= 0 && i <= 9 &&
+        $lista1.childNodes.length > i &&
+        $lista2.childNodes.length > i)
+    ) {
+        console.log('nasol');
+        return;
+    }
+
+    var $el1 = $lista1.childNodes[i];
+    var $el2 = $lista2.childNodes[i];
+
+    var aux = $el1.textContent;
+    $el1.textContent = $el2.textContent;
+    $el2.textContent = aux;
+};
+</script>

@@ -1,0 +1,18 @@
+<ol id="lista1"><li>miau</li><li>chit</li><li>ham</li></ol><ol id="lista2"><li>muu</li><li>cip</li><li>bzzz</li><li>gugu</li></ol>
+<script>
+var $lista = [
+    document.getElementById('lista1'),
+    document.getElementById('lista2')
+];
+var $li = document.getElementsByTagName('li');
+
+for (var i in $li) {
+    $li[i].onclick = function() {
+        var $parent = this.parentNode;
+        var $otherParent = $lista[ +($parent.id != 'lista2') ];
+
+        $otherParent.appendChild(this);
+        $parent.removeChild(this);
+    };
+}
+</script>

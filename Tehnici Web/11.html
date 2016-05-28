@@ -1,0 +1,34 @@
+<!--
+1. Un fisier HTML contine
+
+     <a href=”http://fmi.unibuc.ro/”> <img src=”FMI.jpg” > </a>
+
+Adaugati urmatorul efect:  la click pe imagine apar timp de 10 minute,  din 10 in 10 secunde fereastre alert cu informatii (“info1”, “info2”, ….).
+-->
+<a href=”http://fmi.unibuc.ro/”> <img src=”FMI.jpg” > </a>
+
+<script>
+var $img = document.querySelector('img');
+var a = null;
+var b = null;
+var i = 1;
+$img.onclick = function(e) {
+    console.log('lalal');
+    e.preventDefault();
+
+    clearInterval(a);
+    clearTimeout(b);
+    i = 1;
+
+    a = setInterval(function() {
+        console.log('info' + i);
+        i++;
+    }, 2 * 1000);
+
+    b = setTimeout(function() {
+        clearInterval(a);
+        console.log('cleared');
+    }, 60 * 1000);
+};
+
+</script>

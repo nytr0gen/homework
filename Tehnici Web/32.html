@@ -1,0 +1,31 @@
+<!--
+2. Scrieti o functie creaza_div (n) care creaza dinamic n divuri  imbricate, unul in interiorul celuilalt. Cel mai mic mic are dimensiunea 20x20 pixeli, acesta dimensiune crescand cu 10 pixeli pentru fiecare div.  Atribuiti fiecarui div un id dupa o regula stabilita de voi.  Atasati un event listener astfel incat la  "click"  pe un div sa apara o fereastra alert cu id-ul divului respectiv. Ferestrele corespunzatoare divurilor care sesizeaza  click-ul trebuie sa apara in ordinea descrescatoare a dimensiunii divurilor.
+-->
+<div class="wrap"></div>
+
+
+<script>
+var alert_id = function(e) {
+    console.log(this.id);
+};
+
+var creaza_div = function(n) {
+    var $wrap = document.querySelector('.wrap');
+    var $last = $wrap;
+
+    while (n--) {
+        var $el = document.createElement('div');
+        $el.style.width = (n * 10 + 20) + 'px';
+        $el.style.height = (n * 10 + 20) + 'px';
+        var colorHex = (n % 10).toString(16);
+        $el.style.backgroundColor = '#' + colorHex + colorHex + colorHex;
+        $el.id = 'divul' + n;
+        $el.onclick = alert_id;
+
+        $last.appendChild($el);
+        $last = $el;
+    }
+};
+
+creaza_div(10);
+</script>
